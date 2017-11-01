@@ -55,6 +55,8 @@ class Chess():
         self.bl_points = 0
         self.play(undoing_move, watch)
 
+
+
     def _update_board(self, move):
         if self.whose_move == self.white and move[0] in self.wh_pieces_dict:
             piece = self.wh_pieces_dict[move[0]]
