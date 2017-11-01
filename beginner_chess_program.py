@@ -1,8 +1,22 @@
 import numpy as np
 import time
 
+
 class Chess():
     def __init__(self, player1='User1', player2='User2'):
+
+        '''
+        This class is a Proof of concept:
+
+        * building a board
+        * use unicode to represent each piece
+        * using chess notation to move around the board
+        * Keep track on whose turn
+        * Keep track on moves
+        * keep score based on value of each piece
+        * watch and load games
+        '''
+
         self.board = self._initialize_board()
         self.white=player1
         self.black=player2
