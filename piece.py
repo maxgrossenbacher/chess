@@ -26,6 +26,8 @@ class Pawn():
             return '\u265F'
         if self.color == 'black':
             return '\u2659'
+        else:
+            print('not a valid color...try white or black')
 
     def _update_location(self, newlocal):
         self.location = newlocal
@@ -75,6 +77,8 @@ class Bishop():
             return '\u265D'
         if self.color == 'black':
             return '\u2657'
+        else:
+            print('not a valid color...try white or black')
 
     def _update_location(self, newlocal):
         self.location = newlocal
@@ -165,6 +169,8 @@ class Rook():
             return '\u265C'
         if self.color == 'black':
             return '\u2656'
+        else:
+            print('not a valid color...try white or black')
 
     def _update_location(self, newlocal):
         self.location = newlocal
@@ -209,6 +215,8 @@ class Queen():
             return '\u265D'
         if self.color == 'black':
             return '\u2657'
+        else:
+            print('not a valid color...try white or black')
 
     def _update_location(self, newlocal):
         self.location = newlocal
@@ -237,7 +245,7 @@ class Queen():
 
 
 class King():
-    def __init__(self, color, location, value=3):
+    def __init__(self, color, location, value=1000000):
         self.color = color
         self.value = value
         self.location = location
@@ -262,6 +270,8 @@ class King():
             return '\u265E'
         if self.color == 'black':
             return '\u2658'
+        else:
+            print('not a valid color...try white or black')
 
     def _update_location(self, newlocal):
         self.location = newlocal
