@@ -4,7 +4,6 @@ import time
 
 class Chess():
     def __init__(self, player1='User1', player2='User2'):
-
         '''
         This class is a Proof of concept:
 
@@ -17,7 +16,6 @@ class Chess():
         * watch and load games
         * undo functionality to go back a move
         '''
-
         self.board = self._initialize_board()
         self.white=player1
         self.black=player2
@@ -68,8 +66,6 @@ class Chess():
         self.wh_points = 0
         self.bl_points = 0
         self.play(undoing_move, watch)
-
-
 
     def _update_board(self, move):
         if self.whose_move == self.white and move[0] in self.wh_pieces_dict:
@@ -139,8 +135,6 @@ class Chess():
             print('valid pieces: p=pawn, R=rook, N=knight, B=bishop, Q=queen, K=king')
             del self.moves[-1]
 
-
-
     def _check_move(self):
         if len(self.moves) == 0:
             print('lets play!')
@@ -153,8 +147,6 @@ class Chess():
             print('White move, ' + self.white + ' make your move!')
             self.whose_move = self.white
         return
-
-
 
     def _initialize_board(self):
         board = np.array([['\u2656','\u2658','\u2657','\u2655','\u2654','\u2657','\u2658','\u2656'],\
