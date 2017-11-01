@@ -15,6 +15,7 @@ class Chess():
         * Keep track on moves
         * keep score based on value of each piece
         * watch and load games
+        * undo functionality to go back a move
         '''
 
         self.board = self._initialize_board()
@@ -53,7 +54,6 @@ class Chess():
             self._update_board(user_move.split(':'))
             self.score()
             print('\n')
-
 
     def score(self):
         print(self.white + ' points = ',self.wh_points)
