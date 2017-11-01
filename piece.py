@@ -37,7 +37,7 @@ class Pawn():
             self.valid_moves.append((self.col, (self.row - 1)))
             if len(self.moves) == 0:
                 self.valid_moves.append((self.col, (self.row - 2)))
-            if can_capture == True:
+            if self.can_capture == True:
                 self.valid_moves.append(((self.col + 1), (self.row - 1)))
                 self.valid_moves.append(((self.col - 1), (self.row - 1)))
         elif self.color == 'black':
