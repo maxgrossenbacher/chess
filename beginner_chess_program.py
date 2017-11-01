@@ -8,7 +8,7 @@ class Chess():
         '''
         This class is a Proof of concept:
 
-        * building a board
+        * building a board using NumPy
         * use unicode to represent each piece
         * using chess notation to move around the board
         * Keep track on whose turn
