@@ -29,6 +29,12 @@ class Pawn():
         else:
             print('not a valid color...try white or black')
 
+    def __hash__(self):
+        return hash((self.name, self.location))
+
+    def __eq__(self, other):
+        return (self.name, self.location) == (other.name, other.location)
+
     def _update_location(self, newlocal):
         self.location = newlocal
         self.col = newlocal[0]
@@ -80,6 +86,12 @@ class Bishop():
         else:
             print('not a valid color...try white or black')
 
+    def __hash__(self):
+        return hash((self.name, self.location))
+
+    def __eq__(self, other):
+        return (self.name, self.location) == (other.name, other.location)
+
     def _update_location(self, newlocal):
         self.location = newlocal
         self.col = newlocal[0]
@@ -125,6 +137,14 @@ class Knight():
             return '\u265E'
         if self.color == 'black':
             return '\u2658'
+        else:
+            print('not a valid color...try white or black')
+
+    def __hash__(self):
+        return hash((self.name, self.location))
+
+    def __eq__(self, other):
+        return (self.name, self.location) == (other.name, other.location)
 
     def _update_location(self, newlocal):
         self.location = newlocal
@@ -172,6 +192,12 @@ class Rook():
         else:
             print('not a valid color...try white or black')
 
+    def __hash__(self):
+        return hash((self.name, self.location))
+
+    def __eq__(self, other):
+        return (self.name, self.location) == (other.name, other.location)
+
     def _update_location(self, newlocal):
         self.location = newlocal
         self.col = newlocal[0]
@@ -217,6 +243,12 @@ class Queen():
             return '\u2657'
         else:
             print('not a valid color...try white or black')
+
+    def __hash__(self):
+        return hash((self.name, self.location))
+
+    def __eq__(self, other):
+        return (self.name, self.location) == (other.name, other.location)
 
     def _update_location(self, newlocal):
         self.location = newlocal
@@ -272,6 +304,12 @@ class King():
             return '\u2658'
         else:
             print('not a valid color...try white or black')
+
+    def __hash__(self):
+        return hash((self.name, self.location))
+
+    def __eq__(self, other):
+        return (self.name, self.location) == (other.name, other.location)
 
     def _update_location(self, newlocal):
         self.location = newlocal
