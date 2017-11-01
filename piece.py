@@ -30,10 +30,10 @@ class Pawn():
             print('not a valid color...try white or black')
 
     def __hash__(self):
-        return hash((self.name, self.location))
+        return hash((self.color, self.location))
 
     def __eq__(self, other):
-        return (self.name, self.location) == (other.name, other.location)
+        return (self.color, self.location) == (other.color, other.location)
 
     def _update_location(self, newlocal):
         self.location = newlocal
@@ -87,10 +87,10 @@ class Bishop():
             print('not a valid color...try white or black')
 
     def __hash__(self):
-        return hash((self.name, self.location))
+        return hash((self.color, self.location))
 
     def __eq__(self, other):
-        return (self.name, self.location) == (other.name, other.location)
+        return (self.color, self.location) == (other.color, other.location)
 
     def _update_location(self, newlocal):
         self.location = newlocal
@@ -141,10 +141,10 @@ class Knight():
             print('not a valid color...try white or black')
 
     def __hash__(self):
-        return hash((self.name, self.location))
+        return hash((self.color, self.location))
 
     def __eq__(self, other):
-        return (self.name, self.location) == (other.name, other.location)
+        return (self.color, self.location) == (other.color, other.location)
 
     def _update_location(self, newlocal):
         self.location = newlocal
@@ -193,10 +193,10 @@ class Rook():
             print('not a valid color...try white or black')
 
     def __hash__(self):
-        return hash((self.name, self.location))
+        return hash((self.color, self.location))
 
     def __eq__(self, other):
-        return (self.name, self.location) == (other.name, other.location)
+        return (self.color, self.location) == (other.color, other.location)
 
     def _update_location(self, newlocal):
         self.location = newlocal
@@ -245,10 +245,10 @@ class Queen():
             print('not a valid color...try white or black')
 
     def __hash__(self):
-        return hash((self.name, self.location))
+        return hash((self.color, self.location))
 
     def __eq__(self, other):
-        return (self.name, self.location) == (other.name, other.location)
+        return (self.color, self.location) == (other.color, other.location)
 
     def _update_location(self, newlocal):
         self.location = newlocal
@@ -306,10 +306,10 @@ class King():
             print('not a valid color...try white or black')
 
     def __hash__(self):
-        return hash((self.name, self.location))
+        return hash((self.color, self.location))
 
     def __eq__(self, other):
-        return (self.name, self.location) == (other.name, other.location)
+        return (self.color, self.location) == (other.color, other.location)
 
     def _update_location(self, newlocal):
         self.location = newlocal
