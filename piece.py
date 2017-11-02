@@ -293,6 +293,7 @@ class King():
         self.valid_moves = []
         self.can_capture = False
         self.castle = True
+        self.in_check = False
 
     def move(self, move):
         self.valid_moves = []
@@ -333,3 +334,6 @@ class King():
             c, r = pm
             if r >= 0 and r <= 7 and c >= 0 and c <=7:
                 self.valid_moves.append((c, r))
+
+    def _check_for_check(self):
+        return

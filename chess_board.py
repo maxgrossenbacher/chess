@@ -21,14 +21,9 @@ class ChessBoard():
             user_move = input('> ')
             if user_move in ('exit', 'pause'):
                 break
-            if len(user_move) == 2:
-                p = 'p'
-                move = user_move
-                self.game_moves((p, move))
-            else:
-                p = user_move[0]
-                move = user_move[1:]
-                self.game_moves((p, move))
+            p = user_move[0]
+            move = user_move[1:]
+            self.game_moves((p, move))
 
     def score(self):
         print(self.white + ' points = ',self.wh_points)
