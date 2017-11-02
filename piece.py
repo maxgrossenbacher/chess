@@ -4,6 +4,7 @@ import numpy as np
 class Pawn():
     def __init__(self, color, location, value=1):
         self.color = color
+        self.name = 'p'
         self.value = value
         self.location = location
         self.col = location[0]
@@ -30,10 +31,10 @@ class Pawn():
             print('not a valid color...try white or black')
 
     def __hash__(self):
-        return hash((self.color, self.location))
+        return hash((self.color, self.value, self.name, self.location))
 
     def __eq__(self, other):
-        return (self.color, self.location) == (other.color, other.location)
+        return (self.color, self.value, self.name, self.location) == (other.color, other.value, other.name, other.location)
 
     def _update_location(self, newlocal):
         self.location = newlocal
@@ -61,6 +62,7 @@ class Pawn():
 class Bishop():
     def __init__(self, color, location, value=3):
         self.color = color
+        self.name = 'B'
         self.value = value
         self.location = location
         self.col = location[0]
@@ -87,10 +89,10 @@ class Bishop():
             print('not a valid color...try white or black')
 
     def __hash__(self):
-        return hash((self.color, self.location))
+        return hash((self.color, self.value, self.name, self.location))
 
     def __eq__(self, other):
-        return (self.color, self.location) == (other.color, other.location)
+        return (self.color, self.value, self.name, self.location) == (other.color, other.value, other.name, other.location)
 
     def _update_location(self, newlocal):
         self.location = newlocal
@@ -115,6 +117,7 @@ class Bishop():
 class Knight():
     def __init__(self, color, location, value=3):
         self.color = color
+        self.name = 'N'
         self.value = value
         self.location = location
         self.col = location[0]
@@ -141,10 +144,10 @@ class Knight():
             print('not a valid color...try white or black')
 
     def __hash__(self):
-        return hash((self.color, self.location))
+        return hash((self.color, self.value, self.name, self.location))
 
     def __eq__(self, other):
-        return (self.color, self.location) == (other.color, other.location)
+        return (self.color, self.value, self.name, self.location) == (other.color, other.value, other.name, other.location)
 
     def _update_location(self, newlocal):
         self.location = newlocal
@@ -166,6 +169,7 @@ class Knight():
 class Rook():
     def __init__(self, color, location, value=5):
         self.color = color
+        self.name = 'R'
         self.value = value
         self.location = location
         self.col = location[0]
@@ -193,10 +197,10 @@ class Rook():
             print('not a valid color...try white or black')
 
     def __hash__(self):
-        return hash((self.color, self.location))
+        return hash((self.color, self.value, self.name, self.location))
 
     def __eq__(self, other):
-        return (self.color, self.location) == (other.color, other.location)
+        return (self.color, self.value, self.name, self.location) == (other.color, other.value, other.name, other.location)
 
     def _update_location(self, newlocal):
         self.location = newlocal
@@ -219,6 +223,7 @@ class Rook():
 class Queen():
     def __init__(self, color, location, value=9):
         self.color = color
+        self.name = 'Q'
         self.value = value
         self.location = location
         self.col = location[0]
@@ -238,17 +243,17 @@ class Queen():
 
     def __str__(self):
         if self.color == 'white':
-            return '\u265D'
+            return '\u265B'
         if self.color == 'black':
-            return '\u2657'
+            return '\u2655'
         else:
             print('not a valid color...try white or black')
 
     def __hash__(self):
-        return hash((self.color, self.location))
+        return hash((self.color, self.value, self.name, self.location))
 
     def __eq__(self, other):
-        return (self.color, self.location) == (other.color, other.location)
+        return (self.color, self.value, self.name, self.location) == (other.color, other.value, other.name, other.location)
 
     def _update_location(self, newlocal):
         self.location = newlocal
@@ -279,6 +284,7 @@ class Queen():
 class King():
     def __init__(self, color, location, value=1000000):
         self.color = color
+        self.name = 'K'
         self.value = value
         self.location = location
         self.col = location[0]
@@ -299,17 +305,17 @@ class King():
 
     def __str__(self):
         if self.color == 'white':
-            return '\u265E'
+            return '\u265A'
         if self.color == 'black':
-            return '\u2658'
+            return '\u2654'
         else:
             print('not a valid color...try white or black')
 
     def __hash__(self):
-        return hash((self.color, self.location))
+        return hash((self.color, self.value, self.name, self.location))
 
     def __eq__(self, other):
-        return (self.color, self.location) == (other.color, other.location)
+        return (self.color, self.value, self.name, self.location) == (other.color, other.value, other.name, other.location)
 
     def _update_location(self, newlocal):
         self.location = newlocal
