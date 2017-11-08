@@ -35,14 +35,14 @@ class ChessBoard():
         print(self.black + ' points = ',self.bl_points)
 
     def show_board(self, show_unicode=True):
-        board = np.array([['.' for x in range(8)],\
-                        ['.' for x in range(8)],\
-                        ['.' for x in range(8)],\
-                        ['.' for x in range(8)],\
-                        ['.' for x in range(8)],\
-                        ['.' for x in range(8)],\
-                        ['.' for x in range(8)],\
-                        ['.' for x in range(8)]], dtype='U2')
+        board = np.array([['_' for x in range(8)],\
+                        ['_' for x in range(8)],\
+                        ['_' for x in range(8)],\
+                        ['_' for x in range(8)],\
+                        ['_' for x in range(8)],\
+                        ['_' for x in range(8)],\
+                        ['_' for x in range(8)],\
+                        ['_' for x in range(8)]], dtype='U2')
         for key, piece in self.wh_pieces_dict.items():
             if show_unicode:
                 board[piece.row][piece.col] = piece
@@ -60,6 +60,12 @@ class ChessBoard():
         self.possible_captures = []
         self.cant_move_here = []
         self._assess_board(self.whose_move, self.wh_pieces_dict, self.bl_pieces_dict)
+        if self.whose_move == self.white:
+            pawns = [p for p in self.wh_pieces_dict.values() if p.name == 'p']
+            self._pawns_can_capture(pawns, self.bl_pieces_dict)
+        if self.whose_move == self.black:
+            pawns = [p for p in self.bl_pieces_dict.values() if p.name == 'p']
+            self._pawns_can_capture(pawns, self.wh_pieces_dict)
         p, loc = zip(*self.cant_move_here)
         if move not in loc:
             if self.whose_move == self.white:
@@ -111,6 +117,16 @@ class ChessBoard():
         elif player == self.black:
             self.possible_captures = wh_occupied_spaces
             self.cant_move_here = bl_occupied_spaces
+
+    def _pawns_can_capture(self, pawns, other_pieces):
+        for opp_piece in other_pieces.values():
+            for pawn in pawns:
+                if pawn.color == 'white':
+                    if opp_piece.row == pawn.row - 1 and (opp_piece.col == pawn.col + 1 or opp_piece.col == pawn.col - 1):
+                        pawn._set_can_capture(capture = True)
+                if pawn.color == 'black':
+                    if opp_piece.row == pawn.row + 1 and (opp_piece.col == pawn.col - 1 or opp_piece.col == pawn.col + 1):
+                        pawn._set_can_capture(capture = True)
 
     def _check_move(self):
         if len(self.game_moves) == 0:

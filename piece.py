@@ -16,11 +16,18 @@ class Pawn():
     def move(self, move):
         self.valid_moves = []
         self._possible_moves()
+        self._set_can_capture()
         if move in self.valid_moves:
             self.moves.append(move)
             self._update_location(move)
         else:
             print('Sorry, not a valid move...try again')
+
+    def _set_can_capture(self, capture=False):
+        if capture:
+            self.can_capture = True
+        else:
+            self.can_capture = False
 
     def __str__(self):
         if self.color == 'white':
@@ -74,11 +81,18 @@ class Bishop():
     def move(self, move):
         self.valid_moves = []
         self._possible_moves()
+        self._set_can_capture()
         if move in self.valid_moves:
             self.moves.append(move)
             self._update_location(move)
         else:
             print('Sorry, not a valid move...try again')
+
+    def _set_can_capture(self, capture=False):
+        if capture:
+            self.can_capture = True
+        else:
+            self.can_capture = False
 
     def __str__(self):
         if self.color == 'white':
@@ -129,11 +143,18 @@ class Knight():
     def move(self, move):
         self.valid_moves = []
         self._possible_moves()
+        self._set_can_capture()
         if move in self.valid_moves:
             self.moves.append(move)
             self._update_location(move)
         else:
             print('Sorry, not a valid move...try again')
+
+    def _set_can_capture(self, capture=False):
+        if capture:
+            self.can_capture = True
+        else:
+            self.can_capture = False
 
     def __str__(self):
         if self.color == 'white':
@@ -182,11 +203,18 @@ class Rook():
     def move(self, move):
         self.valid_moves = []
         self._possible_moves()
+        self._set_can_capture()
         if move in self.valid_moves:
             self.moves.append(move)
             self._update_location(move)
         else:
             print('Sorry, not a valid move...try again')
+
+    def _set_can_capture(self, capture=False):
+        if capture:
+            self.can_capture = True
+        else:
+            self.can_capture = False
 
     def __str__(self):
         if self.color == 'white':
@@ -235,11 +263,18 @@ class Queen():
     def move(self, move):
         self.valid_moves = []
         self._possible_moves()
+        self._set_can_capture()
         if move in self.valid_moves:
             self.moves.append(move)
             self._update_location(move)
         else:
             print('Sorry, not a valid move...try again')
+
+    def _set_can_capture(self, capture=False):
+        if capture:
+            self.can_capture = True
+        else:
+            self.can_capture = False
 
     def __str__(self):
         if self.color == 'white':
@@ -298,11 +333,18 @@ class King():
     def move(self, move):
         self.valid_moves = []
         self._possible_moves()
+        self._set_can_capture()
         if move in self.valid_moves:
             self.moves.append(move)
             self._update_location(move)
         else:
             print('Sorry, not a valid move...try again')
+
+    def _set_can_capture(self, capture=False):
+        if capture:
+            self.can_capture = True
+        else:
+            self.can_capture = False
 
     def __str__(self):
         if self.color == 'white':
