@@ -140,6 +140,7 @@ class ChessBoard():
             piece._possible_moves()
             if my_pieces_dict['K1'].location in piece.valid_moves:
                 my_pieces_dict['K1'].in_danger = True
+                print('Check!')
 
     def _pawns_can_capture(self, pawns, other_pieces):
         for opp_piece in other_pieces.values():
@@ -182,7 +183,6 @@ class ChessBoard():
                 self.game_moves.append('O-O-O')
             else:
                 print('You can not castle on the ' + side + ' side!')
-
 
     def _check_move(self):
         if len(self.game_moves) == 0:
