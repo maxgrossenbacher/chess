@@ -3,6 +3,7 @@ import numpy as np
 
 class ChessBoard():
     def __init__(self, player1='User1', player2='Computer'):
+        print('********** Welcome to Chess **********')
         print('Version 1.0.1')
         self.wh_pieces_dict = {}
         self.bl_pieces_dict = {}
