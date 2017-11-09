@@ -6,10 +6,10 @@ class ChessBoard():
         print('Version 1.0.1')
         self.wh_pieces_dict = {}
         self.bl_pieces_dict = {}
-        self.white=player1
-        self.black=player2
+        self.white = player1
+        self.black = player2
         self.board = self._initialize_game()
-        self.whose_move=self.white
+        self.whose_move = self.white
         self.col_dict = {'a':0,'b':1,'c':2,'d':3,'e':4,'f':5,'g':6,'h':7}
         self.row_dict = {'1':7,'2':6,'3':5,'4':4,'5':3,'6':2,'7':1,'8':0}
         self.game_moves = []
@@ -151,8 +151,8 @@ class ChessBoard():
             elif side == 'q' and pieces_dict['K1'].castle == True and pieces_dict['R2'].castle == True and self.board[7][4] == '_' and self.board[7][5] == '_' and self.board[7][6] == '_':
                 self.wh_pieces_dict['K1']._update_location((5,7))
                 self.wh_pieces_dict['K1'].moves.append((5,7))
-                self.wh_pieces_dict['R1']._update_location((4,7))
-                self.wh_pieces_dict['R1'].moves.append((4,7))
+                self.wh_pieces_dict['R2']._update_location((4,7))
+                self.wh_pieces_dict['R2'].moves.append((4,7))
                 self.game_moves.append('O-O-O')
             else:
                 print('You can not castle on the ' + side + ' side!')
@@ -166,8 +166,8 @@ class ChessBoard():
             elif side == 'q' and pieces_dict['K1'].castle == True and pieces_dict['R2'].castle == True and self.board[0][1] == '_' and self.board[0][2] == '_' and self.board[0][3] == '_':
                 self.bl_pieces_dict['K1']._update_location((2,0))
                 self.bl_pieces_dict['K1'].moves.append((2,0))
-                self.bl_pieces_dict['R1']._update_location((3,0))
-                self.bl_pieces_dict['R1'].moves.append((3,0))
+                self.bl_pieces_dict['R2']._update_location((3,0))
+                self.bl_pieces_dict['R2'].moves.append((3,0))
                 self.game_moves.append('O-O-O')
             else:
                 print('You can not castle on the ' + side + ' side!')
