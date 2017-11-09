@@ -12,6 +12,7 @@ class Pawn():
         self.moves = []
         self.valid_moves = []
         self.can_capture = False
+        self.in_danger = False
 
     def move(self, move):
         self.valid_moves = []
@@ -77,6 +78,7 @@ class Bishop():
         self.moves = []
         self.valid_moves = []
         self.can_capture = False
+        self.in_danger = False
 
     def move(self, move):
         self.valid_moves = []
@@ -139,6 +141,7 @@ class Knight():
         self.moves = []
         self.valid_moves = []
         self.can_capture = False
+        self.in_danger = False
 
     def move(self, move):
         self.valid_moves = []
@@ -198,6 +201,7 @@ class Rook():
         self.moves = []
         self.valid_moves = []
         self.can_capture = False
+        self.in_danger = False
         self.castle = True
 
     def move(self, move):
@@ -238,6 +242,8 @@ class Rook():
     def _possible_moves(self):
         if len(self.moves) == 0:
             self.castle = True
+        else:
+            self.castle = False
         count = 0
         for _ in range(8):
             if (self.col, count) != self.location:
@@ -259,6 +265,7 @@ class Queen():
         self.moves = []
         self.valid_moves = []
         self.can_capture = False
+        self.in_danger = False
 
     def move(self, move):
         self.valid_moves = []
@@ -327,8 +334,8 @@ class King():
         self.moves = []
         self.valid_moves = []
         self.can_capture = False
+        self.in_danger = False
         self.castle = True
-        self.in_check = False
 
     def move(self, move):
         self.valid_moves = []
@@ -368,6 +375,8 @@ class King():
     def _possible_moves(self):
         if len(self.moves) == 0:
             self.castle = True
+        else:
+            self.castle = False
         possible_moves = [((self.col - 1), (self.row - 1)), ((self.col), (self.row - 1)),\
                             ((self.col + 1), (self.row - 1)), ((self.col + 1), (self.row)),\
                             ((self.col + 1), (self.row + 1)), ((self.col), (self.row + 1)),\

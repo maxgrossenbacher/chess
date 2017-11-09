@@ -21,14 +21,26 @@ class ChessBoard():
 
     def play(self):
         while self.is_winner == False:
+            self.board = self.show_board()
             print(self.show_board())
             self._check_move()
             user_move = input('> ')
             if user_move in ('exit', 'pause'):
                 break
-            p = user_move[:2]
-            move = user_move[2:]
-            self._update_board(p, move)
+            elif user_move == 'O-O':
+                if self.whose_move == self.white:
+                    self._castle(self.whose_move, self.wh_pieces_dict, side='k')
+                if self.whose_move == self.black:
+                    self._castle(self.whose_move, self.bl_pieces_dict, side='k')
+            elif user_move == 'O-O-O':
+                if self.whose_move == self.white:
+                    self._castle(self.whose_move, self.wh_pieces_dict, side='q')
+                if self.whose_move == self.black:
+                    self._castle(self.whose_move, self.bl_pieces_dict, side='q')
+            else:
+                p = user_move[:2]
+                move = user_move[2:]
+                self._update_board(p, move)
 
     def score(self):
         print(self.white + ' points = ',self.wh_points)
@@ -128,6 +140,39 @@ class ChessBoard():
                     if opp_piece.row == pawn.row + 1 and (opp_piece.col == pawn.col - 1 or opp_piece.col == pawn.col + 1):
                         pawn._set_can_capture(capture = True)
 
+    def _castle(self, player, pieces_dict, side):
+        if player == self.white:
+            if side == 'k' and pieces_dict['K1'].castle == True and pieces_dict['R1'].castle == True and self.board[7][1] == '_' and self.board[7][2] == '_':
+                self.wh_pieces_dict['K1']._update_location((1,7))
+                self.wh_pieces_dict['K1'].moves.append((1,7))
+                self.wh_pieces_dict['R1']._update_location((2,7))
+                self.wh_pieces_dict['R1'].moves.append((2,7))
+                self.game_moves.append('O-O')
+            elif side == 'q' and pieces_dict['K1'].castle == True and pieces_dict['R2'].castle == True and self.board[7][4] == '_' and self.board[7][5] == '_' and self.board[7][6] == '_':
+                self.wh_pieces_dict['K1']._update_location((5,7))
+                self.wh_pieces_dict['K1'].moves.append((5,7))
+                self.wh_pieces_dict['R1']._update_location((4,7))
+                self.wh_pieces_dict['R1'].moves.append((4,7))
+                self.game_moves.append('O-O-O')
+            else:
+                print('You can not castle on the ' + side + ' side!')
+        if player == self.black:
+            if side == 'k' and pieces_dict['K1'].castle == True and pieces_dict['R1'].castle == True and self.board[0][5] == '_' and self.board[0][6] == '_':
+                self.bl_pieces_dict['K1']._update_location((6,0))
+                self.bl_pieces_dict['K1'].moves.append((6,0))
+                self.bl_pieces_dict['R1']._update_location((5,0))
+                self.bl_pieces_dict['R1'].moves.append((5,0))
+                self.game_moves.append('O-O')
+            elif side == 'q' and pieces_dict['K1'].castle == True and pieces_dict['R2'].castle == True and self.board[0][1] == '_' and self.board[0][2] == '_' and self.board[0][3] == '_':
+                self.bl_pieces_dict['K1']._update_location((2,0))
+                self.bl_pieces_dict['K1'].moves.append((2,0))
+                self.bl_pieces_dict['R1']._update_location((3,0))
+                self.bl_pieces_dict['R1'].moves.append((3,0))
+                self.game_moves.append('O-O-O')
+            else:
+                print('You can not castle on the ' + side + ' side!')
+
+
     def _check_move(self):
         if len(self.game_moves) == 0:
             print('lets play!')
@@ -170,40 +215,40 @@ class ChessBoard():
         self.wh_pieces_dict['R1'] = R1
         R2 = Rook(color='white', location=(7,7))
         self.wh_pieces_dict['R2'] = R2
-        Q1 = Queen(color='white', location=(3,7))
+        Q1 = Queen(color='white', location=(4,7))
         self.wh_pieces_dict['Q1'] = Q1
-        K1 = King(color='white', location=(4,7))
+        K1 = King(color='white', location=(3,7))
         self.wh_pieces_dict['K1'] = K1
 
         # create black pieces
-        p0 = Pawn(color='black', location=(0,1))
-        self.bl_pieces_dict['p0'] = p0
-        p1 = Pawn(color='black', location=(1,1))
-        self.bl_pieces_dict['p1'] = p1
-        p2 = Pawn(color='black', location=(2,1))
-        self.bl_pieces_dict['p2'] = p2
-        p3 = Pawn(color='black', location=(3,1))
-        self.bl_pieces_dict['p3'] = p3
-        p4 = Pawn(color='black', location=(4,1))
-        self.bl_pieces_dict['p4'] = p4
-        p5 = Pawn(color='black', location=(5,1))
-        self.bl_pieces_dict['p5'] = p5
-        p6 = Pawn(color='black', location=(6,1))
-        self.bl_pieces_dict['p6'] = p6
-        p7 = Pawn(color='black', location=(7,1))
+        p7 = Pawn(color='black', location=(0,1))
         self.bl_pieces_dict['p7'] = p7
-        N1 = Knight(color='black', location=(1,0))
-        self.bl_pieces_dict['N1'] = N1
-        N2 = Knight(color='black', location=(6,0))
+        p6 = Pawn(color='black', location=(1,1))
+        self.bl_pieces_dict['p6'] = p6
+        p5 = Pawn(color='black', location=(2,1))
+        self.bl_pieces_dict['p5'] = p5
+        p4 = Pawn(color='black', location=(3,1))
+        self.bl_pieces_dict['p4'] = p4
+        p3 = Pawn(color='black', location=(4,1))
+        self.bl_pieces_dict['p3'] = p3
+        p2 = Pawn(color='black', location=(5,1))
+        self.bl_pieces_dict['p2'] = p2
+        p1 = Pawn(color='black', location=(6,1))
+        self.bl_pieces_dict['p1'] = p1
+        p0 = Pawn(color='black', location=(7,1))
+        self.bl_pieces_dict['p0'] = p0
+        N2 = Knight(color='black', location=(1,0))
         self.bl_pieces_dict['N2'] = N2
-        B1 = Bishop(color='black', location=(2,0))
-        self.bl_pieces_dict['B1'] = B1
-        B2 = Bishop(color='black', location=(5,0))
+        N1 = Knight(color='black', location=(6,0))
+        self.bl_pieces_dict['N1'] = N1
+        B2 = Bishop(color='black', location=(2,0))
         self.bl_pieces_dict['B2'] = B2
-        R1 = Rook(color='black', location=(0,0))
-        self.bl_pieces_dict['R1'] = R1
-        R2 = Rook(color='black', location=(7,0))
+        B1 = Bishop(color='black', location=(5,0))
+        self.bl_pieces_dict['B1'] = B1
+        R2 = Rook(color='black', location=(0,0))
         self.bl_pieces_dict['R2'] = R2
+        R1 = Rook(color='black', location=(7,0))
+        self.bl_pieces_dict['R1'] = R1
         Q1 = Queen(color='black', location=(3,0))
         self.bl_pieces_dict['Q1'] = Q1
         K1 = King(color='black', location=(4,0))
