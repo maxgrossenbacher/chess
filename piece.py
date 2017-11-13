@@ -13,6 +13,7 @@ class Pawn():
         self.valid_moves = []
         self.can_capture = False
         self.in_danger = False
+        self.blocked = False
 
     def move(self, move):
         self.valid_moves = []
@@ -79,6 +80,7 @@ class Bishop():
         self.valid_moves = []
         self.can_capture = False
         self.in_danger = False
+        self.blocked = False
 
     def move(self, move):
         self.valid_moves = []
@@ -116,16 +118,24 @@ class Bishop():
         self.row = newlocal[1]
 
     def _possible_moves(self):
-        count = -7
-        for _ in range(14):
-            self.rl_row = self.row + count
-            self.rl_col = self.col + count
-            self.lr_row = self.row + count
-            self.lr_col = self.col - count
-            if self.rl_row >= 0 and self.rl_row <= 7 and self.rl_row != self.row and self.rl_col >= 0 and self.rl_col <=7 and self.rl_col != self.col:
-                self.valid_moves.append((self.rl_col, self.rl_row))
-            if self.lr_row >= 0 and self.lr_row <= 7 and self.lr_row != self.row and self.lr_col >= 0 and self.lr_col <=7 and self.lr_col != self.col:
-                self.valid_moves.append((self.lr_col, self.lr_row))
+        count = 0
+        for _ in range(8):
+            self.rlp_row = self.row + count
+            self.rlp_col = self.col + count
+            self.rln_row = self.row - count
+            self.rln_col = self.col - count
+            self.lrp_row = self.row + count
+            self.lrp_col = self.col - count
+            self.lrn_row = self.row - count
+            self.lrn_col = self.col + count
+            if self.rlp_row >= 0 and self.rlp_row <= 7 and self.rlp_row != self.row and self.rlp_col >= 0 and self.rlp_col <=7 and self.rlp_col != self.col:
+                self.valid_moves.append((self.rlp_col, self.rlp_row))
+            if self.rln_row >= 0 and self.rln_row <= 7 and self.rln_row != self.row and self.rln_col >= 0 and self.rln_col <=7 and self.rln_col != self.col:
+                self.valid_moves.append((self.rln_col, self.rln_row))
+            if self.lrp_row >= 0 and self.lrp_row <= 7 and self.lrp_row != self.row and self.lrp_col >= 0 and self.lrp_col <=7 and self.lrp_col != self.col:
+                self.valid_moves.append((self.lrp_col, self.lrp_row))
+            if self.lrn_row >= 0 and self.lrn_row <= 7 and self.lrn_row != self.row and self.lrn_col >= 0 and self.lrn_col <=7 and self.lrn_col != self.col:
+                self.valid_moves.append((self.lrn_col, self.lrn_row))
             count+=1
 
 
@@ -142,6 +152,7 @@ class Knight():
         self.valid_moves = []
         self.can_capture = False
         self.in_danger = False
+        self.blocked = False
 
     def move(self, move):
         self.valid_moves = []
@@ -203,6 +214,7 @@ class Rook():
         self.can_capture = False
         self.in_danger = False
         self.castle = True
+        self.blocked = False
 
     def move(self, move):
         self.valid_moves = []
@@ -246,10 +258,14 @@ class Rook():
             self.castle = False
         count = 0
         for _ in range(8):
-            if (self.col, count) != self.location:
-                self.valid_moves.append((self.col, count))
-            if (count, self.row) != self.location:
-                self.valid_moves.append((count, self.row))
+            if (self.col, self.row+count) != self.location and self.row+count >=0 and self.row+count <= 7:
+                self.valid_moves.append((self.col, self.row+count))
+            if (self.col, self.row-count) != self.location and self.row-count >=0 and self.row-count <= 7:
+                self.valid_moves.append((self.col, self.row-count))
+            if (self.col+count, self.row) != self.location and self.col+count >=0 and self.col+count <= 7:
+                self.valid_moves.append((self.col+count, self.row))
+            if (self.col-count, self.row) != self.location and self.col-count >=0 and self.col-count <= 7:
+                self.valid_moves.append((self.col-count, self.row))
             count+=1
 
 
@@ -266,6 +282,7 @@ class Queen():
         self.valid_moves = []
         self.can_capture = False
         self.in_danger = False
+        self.blocked = False
 
     def move(self, move):
         self.valid_moves = []
@@ -303,23 +320,34 @@ class Queen():
         self.row = newlocal[1]
 
     def _possible_moves(self):
-        count = -7
-        for _ in range(14):
-            self.rl_row = self.row + count
-            self.rl_col = self.col + count
-            self.lr_row = self.row + count
-            self.lr_col = self.col - count
-            if self.rl_row >= 0 and self.rl_row <= 7 and self.rl_row != self.row and self.rl_col >= 0 and self.rl_col <=7 and self.rl_col != self.col:
-                self.valid_moves.append((self.rl_col, self.rl_row))
-            if self.lr_row >= 0 and self.lr_row <= 7 and self.lr_row != self.row and self.lr_col >= 0 and self.lr_col <=7 and self.lr_col != self.col:
-                self.valid_moves.append((self.lr_col, self.lr_row))
-            count+=1
         count = 0
         for _ in range(8):
-            if (self.col, count) != self.location:
-                self.valid_moves.append((self.col, count))
-            if (count, self.row) != self.location:
-                self.valid_moves.append((count, self.row))
+            self.rlp_row = self.row + count
+            self.rlp_col = self.col + count
+            self.rln_row = self.row - count
+            self.rln_col = self.col - count
+            self.lrp_row = self.row + count
+            self.lrp_col = self.col - count
+            self.lrn_row = self.row - count
+            self.lrn_col = self.col + count
+            # move like a bishop
+            if self.rlp_row >= 0 and self.rlp_row <= 7 and self.rlp_row != self.row and self.rlp_col >= 0 and self.rlp_col <=7 and self.rlp_col != self.col:
+                self.valid_moves.append((self.rlp_col, self.rlp_row))
+            if self.rln_row >= 0 and self.rln_row <= 7 and self.rln_row != self.row and self.rln_col >= 0 and self.rln_col <=7 and self.rln_col != self.col:
+                self.valid_moves.append((self.rln_col, self.rln_row))
+            if self.lrp_row >= 0 and self.lrp_row <= 7 and self.lrp_row != self.row and self.lrp_col >= 0 and self.lrp_col <=7 and self.lrp_col != self.col:
+                self.valid_moves.append((self.lrp_col, self.lrp_row))
+            if self.lrn_row >= 0 and self.lrn_row <= 7 and self.lrn_row != self.row and self.lrn_col >= 0 and self.lrn_col <=7 and self.lrn_col != self.col:
+                self.valid_moves.append((self.lrn_col, self.lrn_row))
+            # move like a rook
+            if (self.col, self.row+count) != self.location and self.row+count >=0 and self.row+count <= 7:
+                self.valid_moves.append((self.col, self.row+count))
+            if (self.col, self.row-count) != self.location and self.row-count >=0 and self.row-count <= 7:
+                self.valid_moves.append((self.col, self.row-count))
+            if (self.col+count, self.row) != self.location and self.col+count >=0 and self.col+count <= 7:
+                self.valid_moves.append((self.col+count, self.row))
+            if (self.col-count, self.row) != self.location and self.col-count >=0 and self.col-count <= 7:
+                self.valid_moves.append((self.col-count, self.row))
             count+=1
 
 
@@ -336,6 +364,7 @@ class King():
         self.can_capture = False
         self.in_danger = False
         self.castle = True
+        self.blocked = False
 
     def move(self, move):
         self.valid_moves = []
